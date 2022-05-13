@@ -21,7 +21,7 @@ const Login = () => {
     <>
       <Head>
         <title>
-          Login | Maket Colaboratory
+          Login
         </title>
       </Head>
       <Box

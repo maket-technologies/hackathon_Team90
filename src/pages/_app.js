@@ -38,7 +38,7 @@ const App = (props) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>
-          Maket Colaboratory
+          Maket
         </title>
         <meta
           name="viewport"
