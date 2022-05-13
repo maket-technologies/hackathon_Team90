@@ -14,7 +14,7 @@ const App = (props) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <title>
-          Sustainable
+          Maket
         </title>
         <meta
           name="viewport"

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { Box, Container, Divider, Tab, Tabs, Typography } from '@mui/material';
-import { withAuthGuard } from '../../hocs/with-auth-guard';
 import { gtm } from '../../lib/gtm';
 
 
@@ -37,4 +36,4 @@ const Dashboard = () => {
   );
 };
 
-export default withAuthGuard(Dashboard);
+export default Dashboard;

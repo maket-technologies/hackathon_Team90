@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { Alert, Box, Button, Divider, FormHelperText, TextField, Typography } from '@mui/material';
+import { Box, Button, FormHelperText, TextField } from '@mui/material';
 import { useAuth } from '../../hooks/use-auth';
 import { useMounted } from '../../hooks/use-mounted';
 import axios from 'axios'
@@ -22,7 +22,7 @@ export const FirebaseLogin = (props) => {
 
   const isMounted = useMounted();
   const router = useRouter();
-  const { signInWithEmailAndPassword, signInWithGoogle } = useAuth();
+  const { signInWithEmailAndPassword } = useAuth();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -47,33 +47,9 @@ export const FirebaseLogin = (props) => {
         if (isMounted()) {    
           const {data} = await axios.get(`/api/owner/${values.email}`)
           .catch(error => console.log(error));
-          
-          localStorage.setItem("lab-user", data.data._id); 
-          localStorage.setItem("is-owner", "true"); 
-          const project_list = data.data.projects.map(project => ({
-            id: project._id,
-            title : project.title,
-            path : `/workspace?id=${project._id}`
-          }))
-          localStorage.setItem('project_list', JSON.stringify(project_list));   
-
-          if(!data.data.limnu_userId || !data.data.limnu_token){   
-            const limnu_userCreate = await axios.post("https://api.apix.limnu.com/v1/userCreate", {
-              apiKey: 'K_zZbXKpBQT6dp4DvHcClqQxq2sDkiRO',
-              displayName: data.data.name
-            })
-            .catch(error => console.log(error));
-            await axios.put(`/api/user/${data.data._id}`, {
-              limnu_userId: limnu_userCreate.data.userId,
-              limnu_token: limnu_userCreate.data.token
-            })
-            .catch(error => console.log(error));
-            localStorage.setItem('limnu_token', limnu_userCreate.data.token)
-          }else{
-            localStorage.setItem("limnu_token", data.data.limnu_token)
-          }
-          
-          const returnUrl = router.query.returnUrl || '/dashboard/projects';
+                    
+          localStorage.setItem("lab-user", data.data._id);          
+          const returnUrl = router.query.returnUrl || '/dashboard';
           router.push(returnUrl);
         }
       } catch (err) {
@@ -88,22 +64,6 @@ export const FirebaseLogin = (props) => {
     }
   });
 
-  const handleGoogleClick = async () => {
-    try {
-      const googleLogin = await signInWithGoogle();
-
-      if (isMounted()) {
-        const {data} = await axios.get(`/api/owner/${googleLogin.user.email}`)
-        .catch(error => console.log(error));
-        localStorage.setItem("lab-user", data.data._id);
-
-        const returnUrl = router.query.returnUrl || '/dashboard/projects';
-        router.push(returnUrl);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
   const classes = useStyles();
 
 

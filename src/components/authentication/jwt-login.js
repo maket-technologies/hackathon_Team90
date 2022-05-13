@@ -43,7 +43,7 @@ export const JWTLogin = (props) => {
         await login(values.email, values.password);
 
         if (isMounted()) {
-          const returnUrl = router.query.returnUrl || '/dashboard/projects';
+          const returnUrl = router.query.returnUrl || '/dashboard';
           router.push(returnUrl);
         }
       } catch (err) {

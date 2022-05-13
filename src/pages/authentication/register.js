@@ -20,7 +20,7 @@ const Register = () => {
     <>
       <Head>
         <title>
-          Register | Maket Colaboratory
+          Register
         </title>
       </Head>
       <Box
