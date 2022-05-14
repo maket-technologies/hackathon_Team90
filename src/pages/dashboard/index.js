@@ -5,7 +5,8 @@ import { gtm } from '../../lib/gtm';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import {Resources} from '../../components/dashboardTabs/Resources'
+import Resources from '../../components/Resources'
+import Profile from "../../components/profile"
 
 const useStyles = makeStyles({
   MuiContainer: {
@@ -22,7 +23,8 @@ const useStyles = makeStyles({
     minHeight: "100px",
     marginRight: "10px",
     marginBottom: "20px",
-    maxWidth: "140px"
+    maxWidth: "140px",
+    width: "100%"
   }
   
 });
@@ -108,41 +110,14 @@ const Dashboard = (props) => {
         <Tab className={classes.tab} label="Resources" {...a11yProps(1)} />
         <Tab className={classes.tab} label="Profile" {...a11yProps(2)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} style={{width:"100%"}}>
         Chat
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        {/* <Resources/> */}
-        <Box>
-          <Grid container >
-            <Card
-             sx={{ minWidth: 280,
-              cursor :"pointer",
-              border: "1px solid rgba(0, 0, 0, 0.23)",
-              
-            }}>
-                <CardMedia
-                 component="img"
-                 height="194"
-                 image={image}
-                 alt="Design image"
-                 />
-              <CardActions
-                sx={{
-                  px:2,
-                  display: 'flex', 
-                  justifyContent:'space-between'
-                }}>
-                  <Typography>Title</Typography>
-                <Chip label={`Academic`} size="small" variant="filled" style={{color:'#E65100', backgroundColor:'rgb(241 203 172)'}}/>
-                {/* <Chip label={`Non-Academic`} size="small" variant="filled" style={{color:'#7B1FA2', backgroundColor:'rgb(231 151 245)'}}/> */}
-              </CardActions>
-            </Card>
-          </Grid>
-        </Box>
+      <TabPanel value={value} index={1} style={{width:"100%"}}>
+        <Resources/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Profile
+      <TabPanel value={value} index={2} style={{width:"100%"}}>
+        <Profile/>
       </TabPanel>
     </Box>
       </Container>
