@@ -15,7 +15,7 @@ export default function Resource({data}){
                 boxShadow : "none",
                 key: {article}
             }}>
-            <CardActionArea href={article.link}>
+            <CardActionArea href={article.link} target="_blank">
                 <CardMedia
                     component="img"
                     height="194"

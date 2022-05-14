@@ -97,7 +97,7 @@ image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
 },
 ]
   
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
