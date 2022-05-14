@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
-import { Box, Container, Grid , Tab, Tabs, Typography, CardActions, CardMedia, Card, NextLink, Chip   } from '@mui/material';
+import { Box, Container, Tab, Tabs, Typography } from '@mui/material';
 import { gtm } from '../../lib/gtm';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import Resources from '../../components/Resources'
+import Resource from '../../components/resource'
 import Profile from "../../components/profile"
 
 const useStyles = makeStyles({
@@ -66,8 +66,39 @@ const Dashboard = (props) => {
 
   const [value, setValue] = React.useState(0);
   const classes = useStyles();
-  const image = 'https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1011&q=80'
-
+  const data = [
+    {
+    title: "Title",
+    type : "non-academic",
+    link : "http://www.google.com",
+    image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+  },
+  {
+  title: "Title",
+  type : "academic",
+  link : "http://www.google.com",
+  image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "non-academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+]
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -114,7 +145,7 @@ const Dashboard = (props) => {
         Chat
       </TabPanel>
       <TabPanel value={value} index={1} style={{width:"100%"}}>
-        <Resources/>
+        <Resource data={data} />
       </TabPanel>
       <TabPanel value={value} index={2} style={{width:"100%"}}>
         <Profile/>
