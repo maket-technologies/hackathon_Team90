@@ -5,11 +5,13 @@ export default function Resource({data}){
 
   return (
     <Box>
-      <Grid container >
+      <Grid container spacing={2}>
         {data.map(article => {
-        return (                
+        return (            
+          <Grid item xs={4} >    
             <Card
-                sx={{ minWidth: 280,
+                sx={{ 
+                // minWidth: 280,
                 cursor :"pointer",
                 border: "none",
                 boxShadow : "none",
@@ -36,7 +38,9 @@ export default function Resource({data}){
                         <Chip label={`Non-Academic`} size="small" variant="filled" style={{color:'#7b1fa2', backgroundColor:'rgba(216,184,226,255)'}}/>}
                 </CardActions>
                 </CardActionArea>
-            </Card> )})}
+            </Card> 
+          </Grid>)})}
+          
       </Grid>
     </Box>
   );

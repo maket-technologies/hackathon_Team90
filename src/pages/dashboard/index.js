@@ -23,8 +23,17 @@ const useStyles = makeStyles({
     minHeight: "100px",
     marginRight: "10px",
     marginBottom: "20px",
-    maxWidth: "140px",
-    width: "100%"
+    // maxWidth: "140px",
+    // width: "100%"
+  },
+  backgroundImg: {
+    padding:'20px',
+        minHeight:'580px',
+        backgroundPosition:'center center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+        backgroundSize: 'cover',
+        backgroundImage: "url(" + "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"+")" 
   }
   
 });
@@ -121,13 +130,16 @@ image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
           py: 8,
           display: 'flex'
         }}
+        className={classes.backgroundImg}
       >
       <Container 
       maxWidth={false}
       sx={{ p:2}}
       >
         <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex' }}
+      sx={{ flexGrow: 1, 
+        // bgcolor: 'background.paper', 
+        display: 'flex' }}
     >
       <Tabs
         orientation="vertical"
@@ -135,7 +147,7 @@ image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
         value={value}
         onChange={handleChange}
         aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider', width:190}}
+        sx={{ borderRight: 1, borderColor: 'divider', width:190, }}
       >
         <Tab className={classes.tab} label="Chat" {...a11yProps(0)} />
         <Tab className={classes.tab} label="Resources" {...a11yProps(1)} />
