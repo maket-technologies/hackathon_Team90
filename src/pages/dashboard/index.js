@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Head from 'next/head';
-import { Box, Container, Grid , Tab, Tabs, Typography, CardActions, CardMedia, Card, NextLink, Chip   } from '@mui/material';
+import { Box, Container, Tab, Tabs, Typography } from '@mui/material';
 import { gtm } from '../../lib/gtm';
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import {Resources} from '../../components/dashboardTabs/Resources'
+import Resource from '../../components/resource'
 
 const useStyles = makeStyles({
   MuiContainer: {
@@ -64,9 +64,40 @@ const Dashboard = (props) => {
 
   const [value, setValue] = React.useState(0);
   const classes = useStyles();
-  const image = 'https://images.unsplash.com/photo-1632516643720-e7f5d7d6ecc9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1011&q=80'
-
-  const handleChange = (event, newValue) => {
+  const data = [
+    {
+    title: "Title",
+    type : "non-academic",
+    link : "http://www.google.com",
+    image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+  },
+  {
+  title: "Title",
+  type : "academic",
+  link : "http://www.google.com",
+  image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "non-academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+]
+  
+  const handleChange = (newValue) => {
     setValue(newValue);
   };
 
@@ -112,34 +143,7 @@ const Dashboard = (props) => {
         Chat
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <Resources/> */}
-        <Box>
-          <Grid container >
-            <Card
-             sx={{ minWidth: 280,
-              cursor :"pointer",
-              border: "1px solid rgba(0, 0, 0, 0.23)",
-              
-            }}>
-                <CardMedia
-                 component="img"
-                 height="194"
-                 image={image}
-                 alt="Design image"
-                 />
-              <CardActions
-                sx={{
-                  px:2,
-                  display: 'flex', 
-                  justifyContent:'space-between'
-                }}>
-                  <Typography>Title</Typography>
-                <Chip label={`Academic`} size="small" variant="filled" style={{color:'#E65100', backgroundColor:'rgb(241 203 172)'}}/>
-                {/* <Chip label={`Non-Academic`} size="small" variant="filled" style={{color:'#7B1FA2', backgroundColor:'rgb(231 151 245)'}}/> */}
-              </CardActions>
-            </Card>
-          </Grid>
-        </Box>
+        <Resource data={data} />
       </TabPanel>
       <TabPanel value={value} index={2}>
         Profile

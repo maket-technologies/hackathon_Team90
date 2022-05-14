@@ -13,7 +13,7 @@ const ArticleSchema = new mongoose.Schema(
       required: true,
       trim: true
     },
-    tier: {
+    type: {
       type: String,
       enum : Type,
       default: Type.academic
