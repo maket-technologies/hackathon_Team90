@@ -302,7 +302,10 @@ export default function Chat(){
     <Box 
     sx={{
         minWidth:"100%",
-        minHeight: "100vh",
+        minHeight: "85vh",
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent:'end'
     }}>
       
       {message.length ? 
