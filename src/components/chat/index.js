@@ -3,10 +3,12 @@ import {useState, useEffect} from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { Configuration, OpenAIApi } from "openai";
+import { openaiConfig } from '../../config';
+
 
 
 export default function Chat(){
+  const { Configuration, OpenAIApi } = require("openai");
 
     const [message, setMessage] = useState([{
         
@@ -24,11 +26,21 @@ export default function Chat(){
         .catch(error => console.log(error));
     },[])
 
-    const configuration = new Configuration({
-        apiKey: "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",
+    /*const configuration = new Configuration({
+        organization: "org-7LY2l2Al6c0yIL0xSwgImFB2",
+        apiKey: process.env.OPENAI_API_KEY,
     });
-    const openai = new OpenAIApi(configuration);
-    const response = openai.listEngines();
+    const openai = new OpenAIApi(configuration);*/
+    //const response = await openai.listEngines();
+
+    //const OpenAI = require('openai-api');
+    //const openai = new OpenAI(process.env.OPENAI_API_KEY);
+
+    const apiKey = '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';
+
+    const client = axios.create({
+      headers: { 'Authorization': 'Bearer ' + apiKey }
+    });
 
     var prompt_bases = {
         home: "home",
@@ -44,8 +56,43 @@ export default function Chat(){
       //this function will take in the user message and assign the classification that it is most likely related to.
       //will return the label/class that is selected
        async function classify(message) {
-        const openai = new OpenAIApi(configuration);
-        const response = await openai.createClassification({
+        /*const configuration = new Configuration({
+          organization: "org-7LY2l2Al6c0yIL0xSwgImFB2",
+          apiKey: process.env.OPENAI_API_KEY,
+        });*/
+
+        //console.log("key", openaiConfig);
+
+        var response = "nona class";
+
+        /*(async () => {
+          const url = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+          const params = {
+            "prompt": message,
+            "max_tokens": 160,
+            "temperature": 0.7,
+            "frequency_penalty": 0.5
+          };
+          const headers = {
+            'Authorization': 'Bearer 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',
+          };
+
+          console.log(headers)
+        
+          /*try {
+            const response = await got.post(url, { json: params, headers: headers }).json();
+            output = `${message}${response.choices[0].text}`;
+            console.log("class", output);
+          } catch (err) {
+            console.log(err);
+          }*/
+        //})();
+
+        
+
+        
+
+        const data = {
           search_model: "davinci",
           model: "davinci",
           examples: [
@@ -217,15 +264,43 @@ export default function Chat(){
           ],
           query:message,
           labels: ["general", "home", "beko"],
-        });
-        return response.label;
+        };
+
+        /*const apiKey = process.env.OPENAI_API_KEY;
+
+        const client = axios.create({
+          headers: { 'Authorization': 'Bearer ' + apiKey }
+        });*/
+
+        const endpoint = 'https://api.openai.com/v1/classifications';
+
+        var response = "null";
+        await client.post(endpoint, data)
+          .then(result => {
+            console.log("class", result)
+            response = result.data.label ;
+          }).catch(err => {
+            // deal with API request errors
+            response = `Sorry, there was an API error. The error was '${err.message}'` 
+          });
+          
+      
+      
+       /*const openai = new OpenAIApi(configuration);
+       console.log(openai)
+        const response = await openai.createClassification({
+          
+        });*/
+        console.log("label = " + response)
+        return response //response.label;
         
       }
       
       //this function takes in the class/label that was produced from the classify function and formats the prompt 
       //with information from the above dictionary based on which class it is.
       //will return a string that is the prommpt for the completion function
-      function formatPrompt(classification){
+      async function formatPrompt(classification, user_input){
+        prompt = "";
         if (classification == "General") {
           prompt += bases_json.general;
         }
@@ -236,6 +311,7 @@ export default function Chat(){
           prompt += bases_json.beko;
         }
         prompt += `\nUser:${user_input}\nAI:`
+        console.log("formatPrompt", prompt)
         return prompt
       }
       
@@ -243,17 +319,50 @@ export default function Chat(){
       //functions and send it to the /completion API endpoint to get the text that will be the AI response to the user.
       //will return a string that is the text that should be sent back to the user from the AI bot in the chat windwo
       async function completion(prompt){
-        const completion = await openai.createCompletion("text-davinci-002", {
+
+        
+        
+         
+        console.log("in completion: ", prompt.split("\n")[0]);
+        const data = {
           prompt: prompt,
           max_tokens: 120,
-        });
-        return completion.data.choices[0].text;
+        };
+
+        const endpoint = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+
+        var response = "none";
+        await client.post(endpoint, data)
+          .then(result => {
+            console.log("completion = ", result)
+            response = result.data.choices[0].text;
+          }).catch(err => {
+            // deal with API request errors
+            response = `Sorry, there was an API error. The error was '${err.message}'` 
+          });
+
+          prompt_bases[prompt.split("\n")[0]] += `${prompt}${response}\n`
+
+        
+
+       /* const completion = await openai.createCompletion("text-davinci-002", {
+          prompt: prompt,
+          max_tokens: 120,
+        });*/
+        console.log("res = " + response)
+        return response //completion.data.choices[0].text;
       }
       
       //uses all of the functions together to take in the user message from the chat window and return the AI bot response.
-      function getResponse(message) {
-        const classification = classify(message);
-        return response = completion(formatPrompt(classification));
+      async function getResponse(message) {
+        const classification = await classify(message);
+        console.log("getRep class =", classification)
+        console.log("message =", message)
+        const prompt = await formatPrompt(classification, message)
+        console.log("prompts =", prompt)
+        const res = await completion(prompt)
+        console.log("getResponse =", res)
+        return res; //change
       }
       
 
@@ -271,14 +380,16 @@ export default function Chat(){
         onSubmit: async (values, helpers) => {
           try {
               setMessage(prev => [...prev, {
-                  name: user,
+                  name: "jenny", //changes
                   message: values.message,
                   type: 'question'
               }])
 
+              const res = await getResponse(values.message);
+
               setMessage(prev => [...prev, {
                 name: "Ceca",
-                message: "I am Ceca",
+                message: res, //change
                 type: 'answer'
             }])
 
