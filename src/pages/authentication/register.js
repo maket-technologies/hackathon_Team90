@@ -7,10 +7,27 @@ import { FirebaseRegister } from '../../components/authentication/firebase-regis
 import { Logo } from '../../components/logo';
 import { gtm } from '../../lib/gtm';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import { makeStyles } from '@material-ui/styles';
+
+
+const useStyles = makeStyles({
+  signupbg: {
+      padding:'20px',
+      // minHeight:'580px',
+      backgroundPosition:'center center',
+      backgroundRepeat: 'no-repeat',
+      backgroundAttachment: 'fixed',
+      backgroundSize: 'cover',
+      backgroundImage: "url(" + "https://images.unsplash.com/photo-1509326066092-14b2e882fe86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"+")" 
+  }
+  
+});
 
 const Register = () => {
   const router = useRouter();
   const { disableGuard } = router.query;
+  const classes = useStyles();
+
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -24,21 +41,7 @@ const Register = () => {
         </title>
       </Head>
       <Box
-        >
-        <NextLink
-        href="/"
-        passHref
-      >
-          <Button
-            sx={{ m: 1.5 }}
-            component="a"
-            variant="text"
-          >
-          <ArrowBackOutlinedIcon/>
-          </Button>
-        </NextLink>
-        </Box>
-      <Box
+        className={classes.signupbg}
         component="main"
         sx={{
           backgroundColor: 'background.default',
@@ -47,6 +50,20 @@ const Register = () => {
           minHeight: '100vh'
         }}
       >
+        <Box>
+          <NextLink
+          href="/"
+          passHref
+          >
+            <Button
+              sx={{ m: 1.5 }}
+              component="a"
+              variant="text"
+            >
+            <ArrowBackOutlinedIcon/>
+            </Button>
+          </NextLink>
+        </Box>
         <Container
           maxWidth="sm"
           sx={{
@@ -67,19 +84,6 @@ const Register = () => {
                 justifyContent: 'center'
               }}
             >
-              <NextLink
-                href="/"
-                passHref
-              >
-                <a>
-                  <Logo
-                    sx={{
-                      height: 40,
-                      width: 40
-                    }}
-                  />
-                </a>
-              </NextLink>
               <Typography variant="h4">
                 Sign Up
               </Typography>

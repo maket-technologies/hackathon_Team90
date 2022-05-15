@@ -33,7 +33,7 @@ const useStyles = makeStyles({
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundSize: 'cover',
-        backgroundImage: "url(" + "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"+")" 
+        backgroundImage: "url(" + "https://images.unsplash.com/photo-1494825514961-674db1ac2700?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"+")" 
   }
   
 });
@@ -80,33 +80,33 @@ const Dashboard = (props) => {
     title: "Title",
     type : "non-academic",
     link : "http://www.google.com",
-    image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+    image : "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3132&q=80"
   },
   {
   title: "Title",
   type : "academic",
   link : "http://www.google.com",
-  image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
-},
-{
-title: "Title",
-type : "non-academic",
-link : "http://www.google.com",
-image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
-},
-{
-title: "Title",
-type : "academic",
-link : "http://www.google.com",
-image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
-},
-{
-title: "Title",
-type : "academic",
-link : "http://www.google.com",
-image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
-},
-]
+  image : "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80"
+  },
+  {
+  title: "Title",
+  type : "non-academic",
+  link : "http://www.google.com",
+  image : "https://images.unsplash.com/photo-1640177155742-835de7b2a9a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+  },
+  {
+  title: "Title",
+  type : "academic",
+  link : "http://www.google.com",
+  image : "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
+  },
+  {
+  title: "Title",
+  type : "academic",
+  link : "http://www.google.com",
+  image : "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+  },
+  ]
   
   const handleChange = (event, newValue) => {
     setValue(newValue);

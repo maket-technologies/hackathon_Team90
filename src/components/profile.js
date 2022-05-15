@@ -2,8 +2,9 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Box, ListItem, Grid, List, ListItemText, Typography, TableContainer, Table, TableHead, 
-    TableRow,TableCell, TableBody, FormControl, Select, MenuItem, InputLabel } from '@mui/material';
+    TableRow,TableCell, TableBody, FormControl, Select, MenuItem, InputLabel, TextField } from '@mui/material';
 import { makeStyles } from '@material-ui/styles';
+import { ContactlessOutlined } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     textLable: {
@@ -44,11 +45,18 @@ export default function Profile() {
 
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
-
+  const [state, setState] = React.useState({
+      amount : "",
+      result: ""
+    });
   const [value, setValue] = React.useState('');
+
+  const Items = ["Fridge", "Oven", "Dishwasher", "Washer", "Dryer", "Incandescent", "CFL", "Halogen", "LED"]
 
   const handleChange = (event) => {
     setValue(event.target.value);
+
+    setState({ value: event.target.value});
   };
 
   return (
@@ -113,28 +121,37 @@ export default function Profile() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                    {Items.map(item => {
+                        return(
                         <TableRow
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row" sx={{textAlign: 'left'}}>Lightbulbs</TableCell>
+                        <>
+                            <TableCell component="th" scope="row" sx={{textAlign: 'left'}}>{item}</TableCell>
                             <TableCell align="left">
                                 <FormControl sx={{width:"70%"}}>
                                     <InputLabel id="demo-simple-select-label">Select</InputLabel>
                                     <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={value}
+                                    value={item.value}
                                     label="select"
                                     onChange={handleChange}
                                     >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value={10}>Samsung</MenuItem>
+                                    <MenuItem value={20}>GE</MenuItem>
+                                    <MenuItem value={30}>BEKO</MenuItem>
+                                    <MenuItem value={40}>LG</MenuItem>
                                     </Select>
                                 </FormControl>
                             </TableCell>
-                            <TableCell align="left">5</TableCell>
+                            <TableCell align="left">
+                                <TextField variant="outlined" value={item.value} name="amount" onChange={handleChange}/>
+                            </TableCell>
+                        </>
                         </TableRow>
+                          )
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>
