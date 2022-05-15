@@ -31,6 +31,7 @@ const Article = (props) => {
         sx={{ pb: '120px' }}
       >
         <DocsContent content={article.content} />
+        
       </Container>
     </div>
   );
