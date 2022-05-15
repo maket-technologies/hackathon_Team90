@@ -314,6 +314,7 @@ export default function Chat(){
               sx={{
                   align: 'right'
               }}
+              key={msg.title}
               >
               <Chip
                 avatar={<Avatar sx={{ bgcolor: "#81c784" }} alt={msg.name.slice(0,1)} src="/static/images/avatar/1.jpg" />}
@@ -326,6 +327,7 @@ export default function Chat(){
               />
                 </Box> :
                 <Box 
+                key={msg.title}
                 sx={{
                     align: 'left'
                 }}>
