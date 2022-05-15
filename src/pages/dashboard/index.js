@@ -99,7 +99,8 @@ link : "http://www.google.com",
 image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
 },
 ]
-  
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
