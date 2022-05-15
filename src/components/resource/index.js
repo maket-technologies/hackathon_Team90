@@ -13,8 +13,9 @@ export default function Resource({data}){
                 cursor :"pointer",
                 border: "none",
                 boxShadow : "none",
-                key: {article.link}
-            }}>
+            }}
+            key={article.link}        
+            >
             <CardActionArea href={article.link} target="_blank">
                 <CardMedia
                     component="img"
