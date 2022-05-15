@@ -283,8 +283,8 @@ export default function Chat(){
             }])
 
             values.message = ""
-            const a = getResponse(values.message)
-            console.log(a);
+            // const a = getResponse(values.message)
+            // console.log(a);
           } catch (err) {
             console.error(err);
     
