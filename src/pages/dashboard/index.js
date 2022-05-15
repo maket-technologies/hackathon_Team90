@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Resource from '../../components/resource'
 import Chat from '../../components/chat'
+import Profile from "../../components/profile"
 
 const useStyles = makeStyles({
   MuiContainer: {
@@ -23,7 +24,8 @@ const useStyles = makeStyles({
     minHeight: "100px",
     marginRight: "10px",
     marginBottom: "20px",
-    maxWidth: "140px"
+    maxWidth: "140px",
+    width: "100%"
   }
   
 });
@@ -140,14 +142,14 @@ image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
         <Tab className={classes.tab} label="Resources" {...a11yProps(1)} />
         <Tab className={classes.tab} label="Profile" {...a11yProps(2)} />
       </Tabs>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0} style={{width:"80%"}}>
         <Chat/>
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} style={{width:"100%"}}>
         <Resource data={data} />
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        Profile
+      <TabPanel value={value} index={2} style={{width:"100%"}}>
+        <Profile/>
       </TabPanel>
     </Box>
       </Container>
