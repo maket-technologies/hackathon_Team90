@@ -6,6 +6,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Resource from '../../components/resource'
+import Chat from '../../components/chat'
 import Profile from "../../components/profile"
 
 const useStyles = makeStyles({
@@ -86,28 +87,29 @@ const Dashboard = (props) => {
   title: "Title",
   type : "academic",
   link : "http://www.google.com",
-  image : "https://images.unsplash.com/photo-1618172193622-ae2d025f4032?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1964&q=80"
-  },
-  {
-  title: "Title",
-  type : "non-academic",
-  link : "http://www.google.com",
-  image : "https://images.unsplash.com/photo-1640177155742-835de7b2a9a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
-  },
-  {
-  title: "Title",
-  type : "academic",
-  link : "http://www.google.com",
-  image : "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-  },
-  {
-  title: "Title",
-  type : "academic",
-  link : "http://www.google.com",
-  image : "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
-  },
-  ]
-  
+  image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "non-academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+{
+title: "Title",
+type : "academic",
+link : "http://www.google.com",
+image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
+},
+]
+
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -153,8 +155,8 @@ const Dashboard = (props) => {
         <Tab className={classes.tab} label="Resources" {...a11yProps(1)} />
         <Tab className={classes.tab} label="Profile" {...a11yProps(2)} />
       </Tabs>
-      <TabPanel value={value} index={0} style={{width:"100%"}}>
-        Chat
+      <TabPanel value={value} index={0} style={{width:"80%"}}>
+        <Chat/>
       </TabPanel>
       <TabPanel value={value} index={1} style={{width:"100%"}}>
         <Resource data={data} />

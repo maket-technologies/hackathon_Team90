@@ -48,7 +48,7 @@ export const FirebaseLogin = (props) => {
           const {data} = await axios.get(`/api/owner/${values.email}`)
           .catch(error => console.log(error));
                     
-          localStorage.setItem("lab-user", data.data._id);          
+          localStorage.setItem("user", data.data._id);          
           const returnUrl = router.query.returnUrl || '/dashboard';
           router.push(returnUrl);
         }
