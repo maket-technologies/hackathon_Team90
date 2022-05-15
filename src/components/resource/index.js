@@ -5,15 +5,14 @@ export default function Resource({data}){
 
   return (
     <Box>
-      <Grid container >
+      <Grid key: {article} container >
         {data.map(article => {
         return (                
             <Card
                 sx={{ minWidth: 280,
                 cursor :"pointer",
                 border: "none",
-                boxShadow : "none",
-                key: {article}
+                boxShadow : "none",            
             }}>
             <CardActionArea href={article.link} target="_blank">
                 <CardMedia
