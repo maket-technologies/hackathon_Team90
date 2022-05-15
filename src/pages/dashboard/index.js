@@ -6,6 +6,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Resource from '../../components/resource'
+import Chat from '../../components/chat'
 
 const useStyles = makeStyles({
   MuiContainer: {
@@ -140,7 +141,7 @@ image : "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg"
         <Tab className={classes.tab} label="Profile" {...a11yProps(2)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Chat
+        <Chat/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Resource data={data} />
