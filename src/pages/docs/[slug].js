@@ -4,6 +4,7 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import { Container } from '@mui/material';
 import { DocsContent } from '../../components/docs/docs-content';
+import { withDocsLayout } from '../../hocs/with-docs-layout';
 import { gtm } from '../../lib/gtm';
 import { getArticleBySlug, getArticles } from '../../utils/docs';
 
@@ -31,13 +32,12 @@ const Article = (props) => {
         sx={{ pb: '120px' }}
       >
         <DocsContent content={article.content} />
-        
       </Container>
     </div>
   );
 };
 
-export default Article;
+export default withDocsLayout(Article);
 
 export const getStaticProps = ({ params }) => {
   const article = getArticleBySlug(params.slug, ['content', 'slug', 'title']);
